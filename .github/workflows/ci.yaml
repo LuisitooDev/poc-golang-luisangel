@@ -1,28 +1,32 @@
-name: API CI
+# This workflow will build a golang project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
+
+name: Go
 
 on:
   push:
-    branches: [main, develop]
+    branches: [ main, develop ]
   pull_request:
-    branches: [main, develop]
+    branches: [ main, develop ]
 
 jobs:
-  testing:
-    runs-on: windows-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4 # git clone into runner
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20.x
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.20'
+
 
       - name: Install Dependencies
-        run: go mod download
+        run: go download mod
 
-      - name: Run unit and integration build
-        run: go build -v .
+    - name: Build
+      run: go build -v ./...
 
-        - name: Run unit and integration tests
-        run: go test -v .
+    - name: Test
+      run: go test -v ./...
