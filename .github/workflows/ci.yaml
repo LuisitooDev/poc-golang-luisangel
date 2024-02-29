@@ -19,7 +19,7 @@ jobs:
           node-version: 20.x
 
       - name: Install Dependencies
-        run: go download mod
+        run: go mod download
 
       - name: Run unit and integration build
         run: go build -v .
