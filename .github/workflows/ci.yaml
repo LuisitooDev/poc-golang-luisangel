@@ -5,9 +5,9 @@ name: Go
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ main, develop ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ main, develop ]
 
 jobs:
 
@@ -23,7 +23,7 @@ jobs:
 
 
     - name: Download
-      run: go download mod
+      run: go mod download
 
     - name: Build
       run: go build -v ./...
