@@ -8,7 +8,7 @@ import (
 )
 
 func GetAllTasks(w http.ResponseWriter, r *http.Request) {
-	var tasks = getAllTasksRepository()
+	//var tasks = getAllTasksRepository()
 	json.NewEncoder(w).Encode(tasks)
 }
 
